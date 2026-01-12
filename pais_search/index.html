@@ -1,0 +1,48 @@
+<!doctype html> 
+<html lang="es"> 
+<head> 
+  <meta charset="utf-8"> 
+  <title>País</title> 
+</head> 
+<body> 
+  <h1>País</h1> 
+  <input id="q" type="text" placeholder="Escribe el país"> 
+  <div id="info"></div> 
+ 
+<script> 
+const API = 'https://restcountries.com/v3.1/all?fields=name,translations,flags,capital,population'; 
+let countries = []; 
+function nombreEs(c){ 
+  if (c.translations && c.translations.spa && c.translations.spa.common) return c.translations.spa.common; 
+  if (c.name && c.name.common) return c.name.common; 
+  return ''; 
+} 
+function esc(s){ if (s==null) return ''; return String(s).replace(/[&<>"'\/]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','/':'&#x2F;'}[c])); } 
+function mostrar(c){ 
+  var info = document.getElementById('info'); 
+  if (!c){ info.innerHTML = ''; return; } 
+  var n = esc(nombreEs(c)); 
+  var cap = esc((c.capital && c.capital.length)? c.capital.join(', '): '—'); 
+  var pop = (c.population||0).toLocaleString(); 
+  var flag = esc(c.flags && (c.flags.png||c.flags.svg)? (c.flags.png||c.flags.svg): ''); 
+  var html = ''; 
+  if (flag) html += '<div><img src="'+flag+'" alt="bandera" width="160"></div>'; 
+  html += '<p><strong>Nombre:</strong> '+n+'</p>'; 
+  html += '<p><strong>Capital:</strong> '+cap+'</p>'; 
+  html += '<p><strong>Población:</strong> '+esc(pop)+'</p>'; 
+  info.innerHTML = html; 
+} 
+ 
+document.getElementById('q').addEventListener('input', function(){ 
+  var q = this.value.trim().toLowerCase(); 
+  if (!q){ mostrar(null); return; } 
+  var f = countries.find(function(c){ return nombreEs(c).toLowerCase().indexOf(q) !== -1; }); 
+  mostrar(f || null); 
+}); 
+ 
+fetch(API).then(function(r){ return r.json(); }).then(function(data){ 
+  countries = data; 
+}); 
+</script> 
+</body> 
+</html>
