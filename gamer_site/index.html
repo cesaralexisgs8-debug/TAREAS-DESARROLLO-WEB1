@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Hub - Inicio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🎮 Gaming Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="juegos.html">Juegos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ranking.html">Ranking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://placehold.co/1920x600/111/00ffea?text=Cyber+Adventure" class="d-block w-100" alt="Juego 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Explora Nuevos Mundos</h5>
+                    <p>La aventura más esperada del año ya está aquí.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://placehold.co/1920x600/222/ff00ff?text=Space+Battles" class="d-block w-100" alt="Juego 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Conquista el Espacio</h5>
+                    <p>Únete a la batalla intergaláctica definitiva.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://placehold.co/1920x600/000/00ffea?text=Racing+Legends" class="d-block w-100" alt="Juego 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Velocidad Extrema</h5>
+                    <p>Compite contra los mejores pilotos del mundo.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container my-5 text-center">
+        <h1 class="display-4 fw-bold text-neon mb-4">Bienvenido a Gaming Hub</h1>
+        <p class="lead mb-5">Tu destino número uno para noticias, reseñas y clasificaciones de videojuegos.</p>
+
+        <!-- Featured Games -->
+        <h2 class="mb-4 text-start border-bottom pb-2 border-secondary">🔥 Juegos Destacados</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="https://placehold.co/600x400/1a1a24/FFF?text=Cyber+2077" class="card-img-top" alt="Juego">
+                    <div class="card-body">
+                        <h5 class="card-title">Cyber 2077</h5>
+                        <p class="card-text">Un RPG de mundo abierto ambientado en el futuro.</p>
+                        <a href="#" class="btn btn-primary w-100">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="https://placehold.co/600x400/1a1a24/FFF?text=Elden+Ring" class="card-img-top" alt="Juego">
+                    <div class="card-body">
+                        <h5 class="card-title">Ring of Elders</h5>
+                        <p class="card-text">Explora las tierras intermedias en esta obra maestra.</p>
+                        <a href="#" class="btn btn-primary w-100">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="https://placehold.co/600x400/1a1a24/FFF?text=Valorant" class="card-img-top" alt="Juego">
+                    <div class="card-body">
+                        <h5 class="card-title">Shooter Tactical</h5>
+                        <p class="card-text">Compite en equipos de 5v5 en este shooter táctico.</p>
+                        <a href="#" class="btn btn-primary w-100">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <a href="juegos.html" class="btn btn-success btn-lg px-5">Ver Todos los Juegos 🚀</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 Gaming Hub. Todos los derechos reservados.</p>
+            <small class="text-muted">Diseñado con Bootstrap 5</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

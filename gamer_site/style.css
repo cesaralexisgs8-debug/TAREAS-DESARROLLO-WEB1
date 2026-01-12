@@ -1,0 +1,145 @@
+:root {
+    /* Variables para los colores neón y fondos oscuros */
+    --neon-primary: #00ffea;   /* Cian brillante */
+    --neon-secondary: #ff00ff; /* Magenta brillante */
+    --bg-dark: #0f0f13;        /* Fondo casi negro */
+    --bg-card: #1a1a24;        /* Fondo de tarjetas */
+    --text-main: #ffffff;      /* Texto blanco */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar: Barra de navegación oscura con borde neón */
+.navbar {
+    background-color: rgba(15, 15, 19, 0.95) !important;
+    border-bottom: 2px solid var(--neon-primary);
+    box-shadow: 0 0 15px var(--neon-primary); /* Efecto resplandor */
+}
+
+.navbar-brand {
+    color: var(--neon-primary) !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--neon-primary);
+}
+
+.nav-link {
+    color: #fff !important;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--neon-secondary) !important; /* Cambia a rosa al pasar el mouse */
+    text-shadow: 0 0 8px var(--neon-secondary);
+}
+
+.nav-link.active {
+    color: var(--neon-primary) !important;
+    border-bottom: 2px solid var(--neon-primary);
+}
+
+/* Cards: Tarjetas de juegos con efecto hover */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid #333;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: white;
+}
+
+/* Efecto de elevación y brillo al pasar el mouse */
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-secondary);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+}
+
+.card-title {
+    color: var(--neon-primary);
+}
+
+/* Buttons: Botones transparentes con bordes neón */
+.btn-primary {
+    background-color: transparent;
+    border: 2px solid var(--neon-primary);
+    color: var(--neon-primary);
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--neon-primary);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.6);
+    border-color: var(--neon-primary);
+}
+
+.btn-success {
+    background-color: transparent;
+    border: 2px solid var(--neon-secondary);
+    color: var(--neon-secondary);
+}
+
+.btn-success:hover {
+    background-color: var(--neon-secondary);
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+    border-color: var(--neon-secondary);
+}
+
+/* Tables: Tablas oscuras para el ranking */
+.table-dark {
+    --bs-table-bg: var(--bg-card);
+    --bs-table-striped-bg: #22222e;
+}
+
+.table-hover tbody tr:hover {
+    color: var(--neon-primary);
+    box-shadow: inset 0 0 10px rgba(0, 255, 234, 0.2);
+}
+
+/* Forms: Inputs oscuros que no desentonan */
+.form-control {
+    background-color: #222;
+    border: 1px solid #444;
+    color: white;
+}
+
+.form-control:focus {
+    background-color: #2a2a2a;
+    border-color: var(--neon-primary);
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.3);
+}
+
+/* Footer: Pie de página simple */
+footer {
+    border-top: 1px solid #333;
+    background-color: #050505;
+    margin-top: auto;
+}
+
+/* Utility: Clases extra para textos y badges */
+.text-neon {
+    color: var(--neon-primary);
+    text-shadow: 0 0 10px rgba(0, 255, 234, 0.5);
+}
+
+.badge-new {
+    background-color: var(--neon-primary);
+    color: black;
+}
+
+.badge-popular {
+    background-color: var(--neon-secondary);
+    color: white;
+}
+
+.carousel-caption {
+    background: rgba(0,0,0,0.6);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid var(--neon-primary);
+}
