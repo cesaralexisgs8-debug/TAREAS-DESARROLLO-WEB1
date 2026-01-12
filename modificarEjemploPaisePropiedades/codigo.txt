@@ -1,0 +1,141 @@
+import React, { useEffect, useMemo, useState } from 'react';
+
+const CountryTable = () => {
+  const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fields = [
+      'name',
+      'translations',
+      'capital',
+      'population',
+      'area',
+      'region',
+      'subregion',
+      'languages',
+      'currencies',
+      'timezones',
+      'cca2',
+      'cca3',
+      'flags'
+    ].join(',');
+
+    fetch(`https://restcountries.com/v3.1/all?fields=${fields}`)
+      .then((r) => r.json())
+      .then((data) => {
+        setCountries(Array.isArray(data) ? data : []);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError('Error cargando países');
+        setLoading(false);
+      });
+  }, []);
+
+  const normalizeName = (c) => c?.translations?.spa?.common || c?.name?.common || '';
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    const list = countries.slice();
+    list.sort((a, b) => normalizeName(a).localeCompare(normalizeName(b)));
+    if (!q) return list;
+    return list.filter((c) => normalizeName(c).toLowerCase().includes(q));
+  }, [countries, search]);
+
+  const formatLangs = (langs) => Object.values(langs || {}).join(', ');
+  const formatCurrencies = (currs) => {
+    const entries = Object.entries(currs || {});
+    return entries
+      .map(([code, info]) => {
+        const name = info?.name ? ` ${info.name}` : '';
+        const symbol = info?.symbol ? ` ${info.symbol}` : '';
+        return `${code}${name}${symbol}`.trim();
+      })
+      .join(', ');
+  };
+
+  if (loading) {
+    return (
+      <div className="container mt-4 text-center">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Cargando...</span>
+        </div>
+        <p className="mt-2">Cargando países...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="alert alert-danger m-4">{error}</div>;
+  }
+
+  return (
+    <div className="container mt-4">
+      <h2 className="mb-3 text-center">Tabla de Países</h2>
+
+      <div className="mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Buscar por nombre (español)"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
+
+      <div className="table-responsive">
+        <table className="table table-striped table-hover align-middle">
+          <thead className="table-dark">
+            <tr>
+              <th>Bandera</th>
+              <th>Nombre</th>
+              <th>Oficial</th>
+              <th>CCA2</th>
+              <th>CCA3</th>
+              <th>Capital</th>
+              <th>Región</th>
+              <th>Subregión</th>
+              <th>Población</th>
+              <th>Área (km²)</th>
+              <th>Idiomas</th>
+              <th>Monedas</th>
+              <th>Husos</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map((c, i) => (
+              <tr key={i}>
+                <td>
+                  {c.flags?.png && (
+                    <img src={c.flags.png} alt={normalizeName(c)} width={32} height={20} style={{ objectFit: 'cover' }} />
+                  )}
+                </td>
+                <td>{normalizeName(c)}</td>
+                <td>{c.name?.official || ''}</td>
+                <td>{c.cca2 || ''}</td>
+                <td>{c.cca3 || ''}</td>
+                <td>{c.capital?.join(', ') || ''}</td>
+                <td>{c.region || ''}</td>
+                <td>{c.subregion || ''}</td>
+                <td>{(c.population ?? 0).toLocaleString()}</td>
+                <td>{(c.area ?? 0).toLocaleString()}</td>
+                <td>{formatLangs(c.languages)}</td>
+                <td>{formatCurrencies(c.currencies)}</td>
+                <td>{(c.timezones || []).join(', ')}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {filtered.length === 0 && (
+        <div className="alert alert-warning text-center">No se encontraron países</div>
+      )}
+    </div>
+  );
+};
+
+export default CountryTable;
